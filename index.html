@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-slate-50/50 scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHAYUK // Portfolio</title>
+    <!-- Tailwind CSS Engine Import -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white font-sans">
+
+    <!-- 1. Reusable Navbar Layout Wrapper -->
+    <div id="nav-wrapper"></div>
+
+    <!-- 2. Main Content Frame -->
+    <main class="max-w-6xl w-full mx-auto px-6 flex-grow py-12 md:py-20">
+        
+        <!-- Hero Profile Section -->
+        <section id="profile" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-white border border-slate-100 p-8 md:p-12 rounded-3xl shadow-sm">
+            
+            <!-- Visual Profile Frame (Column span 4) -->
+            <div class="md:col-span-4 flex justify-center">
+                <div class="relative group w-48 h-48 md:w-64 md:h-64">
+                    <!-- Accent background glow -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    
+                    <!-- Profile Image (me.png from your assets tree) -->
+                    <img src="assets/me.png" alt="Pholl Chanphayuk" class="relative w-full h-full object-cover rounded-2xl border-2 border-white shadow-md bg-slate-50">
+                </div>
+            </div>
+
+            <!-- Profile Summary & Bio (Column span 8) -->
+            <div class="md:col-span-8 space-y-6 text-center md:text-left">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full text-xs text-indigo-700 font-bold tracking-wide uppercase">
+                        🚀 System Integrator
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900">
+                        Hi, I'm <span class="text-indigo-600">Pholl Chanphayuk</span>
+                    </h1>
+                </div>
+
+                <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                    I focus on applying intelligent systems directly to robotics and hardware automation. Rather than building models entirely from scratch, I specialize in combining single-board hardware, sensor pipelines, and real-world system integration to build tangible, functional prototypes.
+                </p>
+
+                <!-- Core Stack Quick Badges -->
+                <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-2">
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold">ROS2</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold">NVIDIA Jetson</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold">Embedded Linux</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold">3D Prototyping</span>
+                </div>
+
+                <!-- Action Links -->
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-4">
+                    <a href="#projects" class="inline-flex justify-center items-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-xl shadow-md shadow-indigo-200 transition-all duration-200">
+                        Explore My Projects
+                    </a>
+                    <a href="awards" class="inline-flex justify-center items-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-6 py-3 rounded-xl transition-all duration-200">
+                        View Achievements
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="awards" class="mt-16"></section>
+
+    </main>
+
+    <!-- 3. Reusable Footer Layout Wrapper -->
+    <div id="footer-wrapper"></div>
+
+    <script src="data/projects.js"></script>
+    <script src="data/awards.js"></script>
+
+    <!-- Component Templates System Scripts -->
+    <script src="components/NavBar.js"></script>
+    <script src="components/Footer.js"></script>
+
+    <!-- Project Data & Engine Logic -->
+    <script src="script.js"></script>
+</body>
+</html>

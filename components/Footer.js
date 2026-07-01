@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <img src="/assets/me.png" alt="Pholl" class="w-16 h-16 rounded-xl bg-slate-100 border border-slate-200 object-cover shadow-sm">
                             <div class="space-y-0.5">
                                 <h4 class="text-slate-900 font-bold text-base tracking-tight">Pholl Chanphayuk</h4>
-                                <p class="text-xs text-indigo-600 font-bold tracking-wide uppercase">System Integrator & Builder</p>
+                                <p class="text-xs text-indigo-600 font-bold tracking-wide uppercase">Builder & Innovator</p>
                                 <div class="pt-2 space-y-0.5 text-xs text-slate-500">
                                     <p><span class="font-semibold text-slate-400">Based in:</span> Phnom Penh, KH</p>
                                     <p><span class="font-semibold text-slate-400">Email:</span> <a href="mailto:phayuk@phayuk.com" class="text-indigo-600 hover:underline">phayuk@phayuk.com</a></p>

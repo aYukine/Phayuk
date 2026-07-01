@@ -32,6 +32,7 @@
     <script src="../components/Footer.js"></script>
 
     <!-- 3. Dynamic Context & View Routing Engine -->
+    <!-- 3. Dynamic Context & View Routing Engine -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById("project-workspace-container");
@@ -41,7 +42,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const projectId = urlParams.get('id');
 
-            // --- CONDITION A: NO QUERY PARAMETER -> RENDER COMPLETE ARCHIVE GRID ---
+            // --- CONDITION A: NO QUERY PARAMETER -> RENDER COMPLETE ARCHIVE GRID WITH FULLY CLICKABLE CARDS ---
             if (!projectId) {
                 document.title = "PHAYUK - All Projects";
                 
@@ -54,27 +55,26 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                             ${projectsData.map(project => `
-                                <div class="border border-slate-100 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+                                <a href="index.html?id=${project.id}" class="group border border-slate-100 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-slate-200 transition-all duration-200 flex flex-col justify-between cursor-pointer text-left">
                                     <div>
                                         <!-- Full cover snapshot preview loaded instantly inside grid lists -->
                                         <div class="aspect-video w-full bg-slate-50 border-b border-slate-100 overflow-hidden">
-                                            <img src="${project.id}/${project.steps[0].img || 'img/1.png'}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy">
+                                            <img src="${project.id}/${project.steps[0].img || 'img/1.png'}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
                                         </div>
                                         <div class="p-6 space-y-2">
                                             <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                                 System Build
                                             </span>
-                                            <h3 class="text-xl font-bold text-slate-900 tracking-tight pt-1">${project.title}</h3>
+                                            <h3 class="text-xl font-black text-slate-900 tracking-tight pt-1 group-hover:text-indigo-600 transition-colors duration-200">${project.title}</h3>
                                             <p class="text-sm text-slate-500 leading-relaxed">${project.subtitle}</p>
                                         </div>
                                     </div>
                                     <div class="px-6 pb-6">
-                                        <!-- Re-routes cleanly right into condition B via appending specific ID parameters -->
-                                        <a href="index.html?id=${project.id}" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 inline-block pt-2">
+                                        <span class="text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors inline-block pt-2">
                                             View Details →
-                                        </a>
+                                        </span>
                                     </div>
-                                </div>
+                                </a>
                             `).join('')}
                         </div>
                     </div>

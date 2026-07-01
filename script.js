@@ -1,6 +1,6 @@
 /**
  * PHAYUK Portfolio Main Engine
- * Handles concise homepage content dashboards with image previews
+ * Handles concise homepage content dashboards with fully clickable cards
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,22 +29,25 @@ function renderHomepageProjects() {
     const topProjects = projectsData.slice(0, 2);
 
     grid.innerHTML = topProjects.map(project => `
-        <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+        <a href="projects/index.html?id=${project.id}" class="group border border-slate-100 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-slate-200 transition-all duration-200 flex flex-col justify-between cursor-pointer text-left">
             <div>
                 <div class="aspect-video w-full bg-slate-50 border-b border-slate-100 overflow-hidden">
-                    <img src="projects/${project.id}/img/1.png" alt="${project.title}" class="w-full h-full object-cover" loading="lazy">
+                    <img src="projects/${project.id}/img/1.png" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
                 </div>
                 <div class="p-6 space-y-2">
-                    <h3 class="text-lg font-bold text-slate-900 tracking-tight pt-1">${project.title}</h3>
+                    <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                        System Build
+                    </span>
+                    <h3 class="text-lg font-black text-slate-900 tracking-tight pt-1 group-hover:text-indigo-600 transition-colors duration-200">${project.title}</h3>
                     <p class="text-sm text-slate-500 leading-relaxed">${project.subtitle || project.description}</p>
                 </div>
             </div>
             <div class="px-6 pb-6">
-                <a href="projects/index.html?id=${project.id}" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors inline-block pt-2">
+                <span class="text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors inline-block pt-2">
                     View Details →
-                </a>
+                </span>
             </div>
-        </div>
+        </a>
     `).join('');
 }
 
@@ -68,25 +71,25 @@ function renderHomepageAwards() {
     const topAwards = awardsData.slice(0, 2);
 
     timeline.innerHTML = topAwards.map(award => `
-        <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+        <a href="awards/index.html?id=${award.id}" class="group border border-slate-100 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-slate-200 transition-all duration-200 flex flex-col justify-between cursor-pointer text-left">
             <div>
                 <div class="aspect-video w-full bg-slate-50 border-b border-slate-100 overflow-hidden">
-                    <img src="awards/${award.id}/${award.image}" alt="${award.title}" class="w-full h-full object-cover" loading="lazy">
+                    <img src="awards/${award.id}/${award.image}" alt="${award.title}" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
                 </div>
                 <div class="p-6 space-y-2">
                     <div class="flex justify-between items-start">
                         <span class="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100/60 px-2.5 py-0.5 rounded-full">${award.year}</span>
                         <span class="text-xs font-semibold text-slate-400">${award.organization}</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 tracking-tight pt-1">${award.title}</h3>
+                    <h3 class="text-lg font-black text-slate-900 tracking-tight pt-1 group-hover:text-indigo-600 transition-colors duration-200">${award.title}</h3>
                     <p class="text-sm text-slate-500 leading-relaxed">${award.summary}</p>
                 </div>
             </div>
             <div class="px-6 pb-6">
-                <a href="awards/index.html?id=${award.id}" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors inline-block pt-2">
+                <span class="text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors inline-block pt-2">
                     View Credentials & Details →
-                </a>
+                </span>
             </div>
-        </div>
+        </a>
     `).join('');
 }

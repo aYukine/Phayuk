@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Admin · Portfolio</title>
+    <link rel="stylesheet" href="/admin.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">Portfolio<span>admin</span></div>
+      <nav id="nav"></nav>
+      <div class="sidebar-foot">
+        <a id="site-link" target="_blank" class="btn btn-ghost">Open site ↗</a>
+        <button id="build-btn" class="btn btn-ghost">Build for deploy</button>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="crumb"></p>
+          <h1 id="title"></h1>
+        </div>
+        <div class="actions">
+          <span id="status" class="status"></span>
+          <button id="save-btn" class="btn btn-primary" disabled>Save changes</button>
+        </div>
+      </header>
+      <section id="view"></section>
+    </main>
+
+    <dialog id="media-dialog">
+      <div class="dialog-head">
+        <strong>Media library</strong>
+        <input id="media-filter" placeholder="Filter by path…" />
+        <button class="btn btn-ghost" data-close>Close</button>
+      </div>
+      <div id="media-grid" class="media-grid"></div>
+    </dialog>
+
+    <dialog id="build-dialog">
+      <div class="dialog-head"><strong>Build output</strong><button class="btn btn-ghost" data-close>Close</button></div>
+      <pre id="build-log"></pre>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+---
+import { toEmbedUrl, type Link } from '../lib/content';
+interface Props { links?: Link[] }
+const { links = [] } = Astro.props;
+const embeds = links.filter((l) => l.url && (l.display === 'embed' || l.display === 'both'));
+---
+
+{embeds.map((l) => (
+  <figure class="mt-10">
+    <div class="aspect-video w-full overflow-hidden border border-neutral-200 bg-neutral-100">
+      <iframe src={toEmbedUrl(l.url)} title={l.label || 'Embedded content'} loading="lazy" class="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    {l.label && <figcaption class="eyebrow mt-3 text-neutral-500">{l.label}</figcaption>}
+  </figure>
+))}

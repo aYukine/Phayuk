@@ -1,0 +1,72 @@
+---
+import { site } from '../lib/content';
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+  { href: '/projects/', label: 'Projects' },
+  { href: '/awards/', label: 'Awards' },
+  { href: '/blogs/', label: 'Journal' },
+];
+---
+
+<header
+  id="site-nav"
+  data-dark={dark ? 'true' : 'false'}
+  class="group/nav fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300
+    data-[dark=true]:border-white/10 data-[dark=true]:bg-transparent data-[dark=true]:text-white
+    data-[dark=false]:border-neutral-200 data-[dark=false]:bg-white/85 data-[dark=false]:text-black data-[dark=false]:backdrop-blur-md"
+>
+  <nav class="container-x flex h-16 items-center justify-between" aria-label="Main">
+    <a href="/" class="flex items-baseline gap-1 text-lg font-black tracking-tight">
+      {site.brand}<span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+    </a>
+
+    <ul class="hidden items-center gap-8 text-sm font-medium md:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                'relative py-1 opacity-70 transition-opacity hover:opacity-100',
+                path.startsWith(l.href) && 'opacity-100 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-current',
+              ]}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      {
+        site.resume && (
+          <li>
+            <a href={site.resume} target="_blank" rel="noopener" class="rounded-full border border-current px-4 py-1.5 text-xs font-semibold">
+              Résumé
+            </a>
+          </li>
+        )
+      }
+    </ul>
+
+    <details class="relative md:hidden">
+      <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h14M3 14h14" /></svg>
+      </summary>
+      <div class="absolute top-12 right-0 w-56 border border-neutral-200 bg-white p-2 text-black shadow-xl">
+        {links.map((l) => <a href={l.href} class="block px-4 py-3 text-sm font-medium hover:bg-neutral-100">{l.label}</a>)}
+        {site.resume && <a href={site.resume} target="_blank" rel="noopener" class="block px-4 py-3 text-sm font-medium hover:bg-neutral-100">Résumé ↗</a>}
+      </div>
+    </details>
+  </nav>
+</header>
+
+<script>
+  // Transparent nav over dark banners; solid white after scrolling.
+  const nav = document.getElementById('site-nav');
+  if (nav && nav.dataset.dark === 'true') {
+    const update = () => (nav.dataset.dark = window.scrollY > 40 ? 'false' : 'true');
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+</script>

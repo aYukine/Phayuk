@@ -1,0 +1,213 @@
+[
+  {
+    "id": "indonesia",
+    "title": "Jakarta, Indonesia",
+    "context": "Regional Huawei ICT 2026 Competition",
+    "year": "2026",
+    "body": "",
+    "cover": "/blogs/indonesia/img/1.png",
+    "published": true,
+    "images": [
+      {
+        "src": "/blogs/indonesia/img/1.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/indonesia/img/2.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/indonesia/img/3.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/indonesia/img/4.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/indonesia/img/5.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/indonesia/img/6.png",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "id": "china",
+    "title": "Shenzhen, China",
+    "context": "Global Huawei ICT 2025 Competition",
+    "year": "2025",
+    "body": "",
+    "cover": "/blogs/china/img/1.png",
+    "published": true,
+    "images": [
+      {
+        "src": "/blogs/china/img/1.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/2.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/3.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/4.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/5.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/6.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/china/img/7.png",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "id": "malaysia",
+    "title": "Kuala Lumpur, Malaysia",
+    "context": "Regional Huawei ICT 2025 Competition",
+    "year": "2025",
+    "body": "",
+    "cover": "/blogs/malaysia/img/1.png",
+    "published": true,
+    "images": [
+      {
+        "src": "/blogs/malaysia/img/1.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/2.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/3.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/4.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/5.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/6.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/7.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/8.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/9.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/10.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/11.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/malaysia/img/12.png",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "id": "vietnam",
+    "title": "Hanoi, Vietnam",
+    "context": "Robocon 2024 International Round",
+    "year": "2024",
+    "body": "",
+    "cover": "/blogs/vietnam/img/1.png",
+    "published": true,
+    "images": [
+      {
+        "src": "/blogs/vietnam/img/1.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/2.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/3.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/4.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/5.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/6.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/7.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/8.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/vietnam/img/9.png",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "id": "my-hometown",
+    "title": "My Cambodia life",
+    "context": "Me and my ordinary life",
+    "year": "",
+    "body": "",
+    "cover": "/blogs/my-hometown/img/1.png",
+    "published": true,
+    "images": [
+      {
+        "src": "/blogs/my-hometown/img/1.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/my-hometown/img/2.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/my-hometown/img/3.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/my-hometown/img/4.png",
+        "caption": ""
+      },
+      {
+        "src": "/blogs/my-hometown/img/5.png",
+        "caption": ""
+      }
+    ]
+  }
+]

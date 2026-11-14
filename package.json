@@ -1,0 +1,18 @@
+{
+  "name": "phayuk-portfolio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "concurrently -k -n web,admin \"npm:dev -w frontend\" \"npm:start -w backend\"",
+    "dev": "npm start",
+    "build": "npm run build -w frontend",
+    "preview": "npm run preview -w frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
+}

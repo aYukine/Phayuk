@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site, projects, awards, blogs, featured } from '../lib/content';
+
+const topProjects = featured(projects, 3);
+const topAwards = awards.slice(0, 4);
+const topBlogs = blogs.slice(0, 3);
+---
+
+<Layout navDark>
+  <!-- Banner -->
+  <section class="relative isolate flex min-h-[600px] h-[92svh] max-h-[960px] items-end overflow-hidden bg-black text-white">
+    {site.banner && (
+      <img src={site.banner} alt="" aria-hidden="true" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    )}
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/30 to-black/40"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/10 to-transparent"></div>
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:calc(100%/6)_100%]"></div>
+
+    <div class="container-x pt-32 pb-16 md:pb-20">
+      <div class="grid items-end gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          {site.eyebrow && <p class="eyebrow reveal text-neutral-200">{site.eyebrow} — {site.location}</p>}
+          <h1 class="reveal mt-5 text-5xl leading-[0.95] font-black tracking-tighter sm:text-7xl lg:text-8xl">
+            {site.name}
+          </h1>
+          <p class="reveal mt-6 text-xl font-medium text-neutral-300 md:text-2xl">{site.role}</p>
+          {site.headline && <p class="reveal mt-2 text-xl text-neutral-300 md:text-2xl">{site.headline}</p>}
+          <div class="reveal mt-10 flex flex-wrap gap-3">
+            <a href="/projects/" class="btn-invert">Explore projects <span aria-hidden="true">→</span></a>
+            <a href="/awards/" class="btn-ghost-dark">View achievements</a>
+          </div>
+        </div>
+        {site.stats && site.stats.length > 0 && (
+          <dl class="reveal grid grid-cols-3 border border-white/15 bg-black/45 px-5 backdrop-blur-md lg:col-span-4 lg:grid-cols-1 lg:px-0">
+            {site.stats.map((s) => (
+              <div class="py-5 lg:border-b lg:border-white/10 lg:px-8 lg:py-6 lg:last:border-b-0">
+                <dt class="eyebrow text-neutral-300">{s.label}</dt>
+                <dd class="mt-1 text-4xl font-black tracking-tight md:text-5xl">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills strip -->
+  {site.skills && site.skills.length > 0 && (
+    <div class="overflow-hidden border-y border-black bg-white py-4">
+      <ul class="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm font-semibold tracking-tight md:justify-between">
+        {site.skills.map((s, i) => (
+          <li class="flex items-center gap-8">{i > 0 && <span class="hidden h-1 w-1 rounded-full bg-black md:inline-block" aria-hidden="true"></span>}{s}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <!-- About -->
+  <section class="container-x grid gap-12 py-24 md:grid-cols-12 md:py-32">
+    <div class="md:col-span-4">
+      <p class="eyebrow text-neutral-500"><span class="mr-3 text-black">00</span>About</p>
+      {site.avatar && (
+        <div class="group mt-8 aspect-square max-w-xs overflow-hidden bg-neutral-100">
+          <img src={site.avatar} alt={`Portrait of ${site.name}`} width="640" height="640" loading="lazy" class="bw-img h-full w-full object-cover" />
+        </div>
+      )}
+    </div>
+    <div class="md:col-span-8">
+      <p class="text-2xl leading-snug font-medium tracking-tight md:text-4xl md:leading-tight">{site.bio}</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        {site.resume && <a href={site.resume} target="_blank" rel="noopener" class="btn-primary">Download résumé ↓</a>}
+        {site.email && <a href={`mailto:${site.email}`} class="btn-secondary">Contact me</a>}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="container-x pb-24 md:pb-32">
+    <SectionHeader index="01" eyebrow="Selected work" title="Featured projects" href="/projects/" linkLabel="All projects" />
+    <div class="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2">
+      {topProjects.map((p, i) => (
+        <div class:list={[i === 0 && 'md:col-span-2']}>
+          <ProjectCard project={p} index={i} large={i === 0} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="bg-neutral-50 py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeader index="02" eyebrow="Recognition" title="Awards & milestones" href="/awards/" linkLabel="All awards" />
+      <ol class="mt-4">
+        {topAwards.map((a) => (
+          <li class="border-b border-neutral-200">
+            <a href={`/awards/${a.id}/`} class="group grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-white md:px-4">
+              <span class="col-span-3 font-mono text-sm text-neutral-500 md:col-span-1">{a.year}</span>
+              <div class="col-span-9 md:col-span-7">
+                <h3 class="text-lg font-bold tracking-tight md:text-xl">{a.title}</h3>
+                <p class="mt-1 text-sm text-neutral-500">{a.organization}</p>
+              </div>
+              <span class="col-span-9 col-start-4 md:col-span-3 md:col-start-auto">
+                {a.placement && <span class="eyebrow inline-block border border-black px-2.5 py-1">{a.placement}</span>}
+              </span>
+              <span class="hidden text-right text-xl transition-transform group-hover:translate-x-1 md:col-span-1 md:block">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Journal -->
+  {topBlogs.length > 0 && (
+    <section class="container-x py-24 md:py-32">
+      <SectionHeader index="03" eyebrow="Journal" title="Travel & event logs" href="/blogs/" linkLabel="All entries" />
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        {topBlogs.map((b) => (
+          <a href={`/blogs/${b.id}/`} class="group block">
+            <div class="aspect-[4/5] overflow-hidden bg-neutral-100">
+              {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="bw-img h-full w-full object-cover" />}
+            </div>
+            <p class="eyebrow mt-5 text-neutral-500">{b.year || 'Log'}</p>
+            <h3 class="mt-2 text-xl font-bold tracking-tight">{b.title}</h3>
+            <p class="mt-1 text-sm text-neutral-600">{b.context}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</Layout>

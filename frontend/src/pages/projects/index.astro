@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../lib/content';
+const description = `Engineering and robotics projects by ${projects.length ? projects.map((p) => p.title).join(', ') : 'Pholl Chanphayuk'}.`;
+---
+
+<Layout title="Projects" description={description} navDark>
+  <PageBanner eyebrow={`${projects.length} projects`} title="Engineering work" lead="Systems built end to end, from hardware prototypes and edge AI pipelines to production web platforms." image={projects[0]?.cover} />
+  <section class="container-x py-20 md:py-28">
+    <div class="grid gap-x-8 gap-y-16 md:grid-cols-2">
+      {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+    </div>
+  </section>
+</Layout>

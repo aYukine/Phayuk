@@ -1,0 +1,58 @@
+[
+  {
+    "id": "AI-Ready-Asean-2025",
+    "title": "AI-Ready ASEAN 2025",
+    "organization": "AI Foundation & AI Singapore",
+    "year": "2025",
+    "placement": "2nd Place",
+    "summary": "2nd place, recognized for high-impact AI integration and solutions architecture.",
+    "description": "Project BlindSense helps blind people navigate their surroundings using AI and computer vision. The project was recognized for its innovative approach to assistive technology and its potential to improve the lives of visually impaired individuals in the ASEAN region.",
+    "image": "/awards/AI-Ready-Asean-2025/award.png",
+    "project": "Blindsense",
+    "featured": true,
+    "published": true,
+    "links": []
+  },
+  {
+    "id": "Huawei-ICT-innovation-Regional-2025",
+    "title": "Huawei ICT Competition Innovation Track (Regional)",
+    "organization": "Huawei & ASEAN Foundation",
+    "year": "2025",
+    "placement": "Grand Prize",
+    "summary": "Grand prize AI track award in the APAC region.",
+    "description": "The Pestibot application was recognized for its innovative approach to AI in the farming sector, winning the regional track against other regional contenders and advancing to the global competition.",
+    "image": "/awards/Huawei-ICT-innovation-Regional-2025/award.png",
+    "project": "Pestibot",
+    "featured": true,
+    "published": true,
+    "links": []
+  },
+  {
+    "id": "Huawei-ICT-Innovation-Global-2025",
+    "title": "Huawei ICT Competition Innovation Track (Global)",
+    "organization": "Huawei",
+    "year": "2025",
+    "placement": "Global Finalist",
+    "summary": "Global finalist after winning grand prize at the regional level.",
+    "description": "After winning the regional track, Pestibot was evaluated against global entries, highlighting its innovative approach to AI in the farming sector.",
+    "image": "/awards/Huawei-ICT-Innovation-Global-2025/award.png",
+    "project": "Pestibot",
+    "featured": false,
+    "published": true,
+    "links": []
+  },
+  {
+    "id": "Robocon-National-2024",
+    "title": "Robocon National Championship 2024",
+    "organization": "TVK",
+    "year": "2024",
+    "placement": "Champion",
+    "summary": "Part of the winning team of the 2024 national Robocon competition.",
+    "description": "ITC02 won the national championship, then proceeded to the international competition in Vietnam with one semi-automated robot and one fully automated robot.",
+    "image": "/awards/Robocon-National-2024/award.png",
+    "project": "",
+    "featured": false,
+    "published": true,
+    "links": []
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "Blindsense",
+    "title": "BlindSense System",
+    "subtitle": "Real-time wearable vision processing pipeline utilizing edge AI and haptic feedback loops.",
+    "description": "BlindSense is a wearable belt that helps blind and visually impaired people navigate their surroundings. An onboard Raspberry Pi 5 runs YOLO segmentation to understand the walking path and obstacles, and translates what it sees into haptic feedback.",
+    "category": "Edge AI · Assistive Tech",
+    "year": "2025",
+    "cover": "/projects/Blindsense/img/2.png",
+    "featured": true,
+    "published": true,
+    "tags": ["Raspberry Pi 5", "YOLO", "Computer Vision", "Haptics"],
+    "links": [],
+    "steps": [
+      { "label": "1st Version", "desc": "Held by hope and prayer, in this version we were using normal controller and sensors.", "img": "/projects/Blindsense/img/1.png" },
+      { "label": "2nd Version", "desc": "Now with onboard RPi 5, the belt can think and process AI vision.", "img": "/projects/Blindsense/img/2.png" },
+      { "label": "Vision Stack", "desc": "With YOLO segmentation, we are able to process the road walking path and obstacles.", "img": "/projects/Blindsense/img/3.png" },
+      { "label": "Belt put on", "desc": "The drip is also fire.", "img": "/projects/Blindsense/img/4.png" },
+      { "label": "Huawei regional", "desc": "This project was selected for the Huawei regional competition.", "img": "/projects/Blindsense/img/5.png" },
+      { "label": "CPIA", "desc": "We won second place in CPIA competition.", "img": "/projects/Blindsense/img/6.png" }
+    ]
+  },
+  {
+    "id": "Pestibot",
+    "title": "Pestibot Platform",
+    "subtitle": "Autonomous agricultural navigation rover designed for scanning target crop environments.",
+    "description": "Pestibot uses AI vision to detect pests on crops and spray pesticide only where it is needed, cutting chemical use and cost for Cambodian farmers.",
+    "category": "Robotics · AgriTech",
+    "year": "2025",
+    "cover": "/projects/Pestibot/img/1.png",
+    "featured": true,
+    "published": true,
+    "tags": ["YOLO", "Robotics", "Agriculture"],
+    "links": [],
+    "steps": [
+      { "label": "Overview", "desc": "This project uses AI to process and spray pesticides efficiently.", "img": "/projects/Pestibot/img/1.png" },
+      { "label": "AI vision", "desc": "YOLO object detection used with fake pests.", "img": "/projects/Pestibot/img/2.png" },
+      { "label": "First design", "desc": "This is the first ever design featuring just the bare minimum concept.", "img": "/projects/Pestibot/img/3.png" },
+      { "label": "Huawei success", "desc": "This project earned us the Huawei regional grand prize and global 3rd prize.", "img": "/projects/Pestibot/img/4.png" }
+    ]
+  },
+  {
+    "id": "Reanot",
+    "title": "Reanot System",
+    "subtitle": "Application for students and teachers to find each other built to handle many users with small infrastructure cost.",
+    "description": "Reanot connects students with teachers. Students can browse courses, find and contact teachers directly, or post a request when they can't find what they need.",
+    "category": "Full Stack · Web",
+    "year": "2025",
+    "cover": "/projects/Reanot/img/1.png",
+    "featured": true,
+    "published": true,
+    "tags": ["Web App", "Full Stack"],
+    "links": [
+      { "label": "Visit reanot.com", "url": "https://reanot.com", "display": "button" }
+    ],
+    "steps": [
+      { "label": "Home page", "desc": "Overview page of our website.", "img": "/projects/Reanot/img/1.png" },
+      { "label": "Course page", "desc": "For students to find what they like.", "img": "/projects/Reanot/img/2.png" },
+      { "label": "Teacher page", "desc": "You can even find and contact teachers directly.", "img": "/projects/Reanot/img/3.png" },
+      { "label": "Request page", "desc": "Don't see what you want? Post a request!", "img": "/projects/Reanot/img/4.png" }
+    ]
+  }
+]

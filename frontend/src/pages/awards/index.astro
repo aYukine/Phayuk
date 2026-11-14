@@ -1,4 +1,5 @@
 ---
+import Img from '../../components/Img.astro';
 import Layout from '../../layouts/Layout.astro';
 import PageBanner from '../../components/PageBanner.astro';
 import { awards } from '../../lib/content';
@@ -11,7 +12,7 @@ import { awards } from '../../lib/content';
       {awards.map((a) => (
         <a href={`/awards/${a.id}/`} class="card card-hover group block p-3">
           <div class="relative aspect-[16/10] overflow-hidden rounded-2xl bg-soft">
-            {a.image && <img src={a.image} alt={a.title} loading="lazy" decoding="async" class="zoom-img h-full w-full object-cover" />}
+            {a.image && <Img src={a.image} alt={a.title} class="zoom-img h-full w-full object-cover" sizes="(min-width: 768px) 540px, 100vw" />}
             {a.placement && <span class="absolute top-4 left-4 rounded-full bg-gold px-3.5 py-1.5 text-xs font-semibold shadow-soft">🏆 {a.placement}</span>}
           </div>
           <div class="p-4">

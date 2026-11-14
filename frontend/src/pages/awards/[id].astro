@@ -1,4 +1,5 @@
 ---
+import Img from '../../components/Img.astro';
 import Layout from '../../layouts/Layout.astro';
 import PageBanner from '../../components/PageBanner.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
@@ -22,7 +23,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'Article', headline:
     <div class="md:col-span-7">
       {award.image && (
         <a href={award.image} target="_blank" class="card block p-3">
-          <img src={award.image} alt={award.title} class="w-full rounded-2xl object-cover" />
+          <Img src={award.image} alt={award.title} loading="eager" class="w-full rounded-2xl object-cover" sizes="(min-width: 768px) 660px, 100vw" />
         </a>
       )}
     </div>

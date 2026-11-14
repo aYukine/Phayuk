@@ -19,7 +19,7 @@ start.sh            ← one command to run everything
 
 Edit content in the admin and click **Save**. The JSON in `content/` and any uploaded files are written straight into the repo. The dev site reloads by itself.
 
-Uploaded photos are resized to at most 2000px, converted to WebP and stripped of EXIF/GPS metadata.
+Uploaded photos are resized to at most 1600px, converted to WebP, stripped of EXIF/GPS metadata, and get a 640px `.thumb.webp` that cards and phones load instead. If you ever drop PNG/JPEG files into `frontend/public` by hand, run `npm run optimize-images` to convert them and update the content files.
 
 Project entries support:
 - **Text**: title, subtitle, overview (blank line = new paragraph), tags.

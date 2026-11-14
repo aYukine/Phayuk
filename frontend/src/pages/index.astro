@@ -1,4 +1,5 @@
 ---
+import Img from '../components/Img.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -38,12 +39,12 @@ const skillTints = ['bg-soft', 'bg-leaf', 'bg-sunny', 'bg-lime', 'bg-cloud'];
         <div class="relative lg:col-span-6">
           {site.banner && (
             <div class="reveal aspect-[4/3] overflow-hidden rounded-3xl border-4 border-paper shadow-lift sm:rotate-2 sm:rounded-[2rem] sm:border-8">
-              <img src={site.banner} alt={`${site.name} at a competition`} fetchpriority="high" class="h-full w-full object-cover" />
+              <Img src={site.banner} alt={`${site.name} at a competition`} loading="eager" fetchpriority="high" class="h-full w-full object-cover" sizes="(min-width: 1024px) 560px, 100vw" />
             </div>
           )}
           {site.avatar && (
             <div class="float absolute -top-6 -left-2 flex sm:-left-4 items-center gap-3 rounded-2xl bg-paper p-2.5 pr-5 shadow-lift md:-left-10">
-              <img src={site.avatar} alt="" width="56" height="56" class="h-14 w-14 rounded-xl object-cover" />
+              <Img src={site.avatar} alt="" loading="eager" class="h-14 w-14 rounded-xl object-cover" sizes="56px" />
               <div>
                 <p class="text-sm font-semibold">{site.name}</p>
                 <p class="text-xs text-muted">Open to collaborate ✨</p>
@@ -78,7 +79,7 @@ const skillTints = ['bg-soft', 'bg-leaf', 'bg-sunny', 'bg-lime', 'bg-cloud'];
       {site.avatar && (
         <div class="relative mx-auto max-w-[16rem] md:max-w-xs">
           <div class="absolute inset-0 -rotate-3 rounded-[2rem] bg-primary"></div>
-          <img src={site.avatar} alt={`Portrait of ${site.name}`} width="640" height="640" loading="lazy" class="relative aspect-square w-full rounded-[2rem] object-cover shadow-soft" />
+          <Img src={site.avatar} alt={`Portrait of ${site.name}`} sizes="(min-width: 768px) 320px, 256px" class="relative aspect-square w-full rounded-[2rem] object-cover shadow-soft" />
         </div>
       )}
     </div>
@@ -113,7 +114,7 @@ const skillTints = ['bg-soft', 'bg-leaf', 'bg-sunny', 'bg-lime', 'bg-cloud'];
           {topAwards.map((a) => (
             <li>
               <a href={`/awards/${a.id}/`} class="card card-hover group flex items-center gap-5 p-4 md:p-5">
-                {a.image && <img src={a.image} alt="" loading="lazy" class="hidden h-16 w-24 shrink-0 rounded-xl object-cover sm:block" />}
+                {a.image && <Img src={a.image} alt="" sizes="96px" class="hidden h-16 w-24 shrink-0 rounded-xl object-cover sm:block" />}
                 <div class="min-w-0 flex-1">
                   <p class="text-xs font-medium text-muted">{a.year} · {a.organization}{a.placement && <span class="md:hidden"> · 🏆 {a.placement}</span>}</p>
                   <h3 class="mt-1 text-lg font-semibold tracking-tight md:text-xl">{a.title}</h3>
@@ -136,7 +137,7 @@ const skillTints = ['bg-soft', 'bg-leaf', 'bg-sunny', 'bg-lime', 'bg-cloud'];
         {topBlogs.map((b) => (
           <a href={`/blogs/${b.id}/`} class="card card-hover group block p-3">
             <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-soft sm:aspect-[4/5]">
-              {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="zoom-img h-full w-full object-cover" />}
+              {b.cover && <Img src={b.cover} alt={b.title} class="zoom-img h-full w-full object-cover" sizes="(min-width: 768px) 360px, 100vw" />}
             </div>
             <div class="p-3 pt-4">
               <p class="text-xs font-medium text-muted">{b.year || 'Log'} · {b.images?.length || 0} photos</p>

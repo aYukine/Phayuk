@@ -31,11 +31,28 @@ fi
 if [ "${1:-}" = "--ssl" ]; then
   command -v certbot >/dev/null || die "certbot is not installed. Run: $SUDO apt install -y certbot python3-certbot-nginx"
   [ -e "$CONF" ] || die "Run ./deploy/install.sh first so the nginx site exists."
-  say "Requesting certificate for $DOMAIN and www.$DOMAIN"
-  $SUDO certbot --nginx -d "$DOMAIN" -d "www.$DOMAIN" --redirect --non-interactive --agree-tos \
+
+  # Only request names whose DNS already points at this server (FORCE=1 skips the check,
+  # e.g. when the records are proxied through Cloudflare).
+  MY_IPS=" $(hostname -I 2>/dev/null) "
+  ARGS=(); NAMES=()
+  for d in "$DOMAIN" "www.$DOMAIN"; do
+    ips="$(getent ahostsv4 "$d" | awk '{print $1}' | sort -u | tr '\n' ' ')"
+    match=0; for ip in $ips; do [[ "$MY_IPS" == *" $ip "* ]] && match=1; done
+    if [ "$match" = 1 ] || [ "${FORCE:-0}" = 1 ]; then
+      echo "  ok    $d -> ${ips:-?}"; ARGS+=(-d "$d"); NAMES+=("$d")
+    else
+      echo "  skip  $d -> ${ips:-no record} (this server: $(echo $MY_IPS))"
+    fi
+  done
+  [ ${#ARGS[@]} -gt 0 ] || die "No domain points at this server yet. Update DNS, wait a few minutes, then retry."
+
+  say "Requesting certificate for: ${NAMES[*]}"
+  $SUDO certbot --nginx "${ARGS[@]}" --cert-name "$DOMAIN" --expand --redirect --non-interactive --agree-tos \
     ${CERTBOT_EMAIL:+-m "$CERTBOT_EMAIL"} ${CERTBOT_EMAIL:---register-unsafely-without-email}
   $SUDO nginx -t && $SUDO systemctl reload nginx
-  say "HTTPS enabled: https://$DOMAIN"
+  say "HTTPS enabled for: ${NAMES[*]}"
+  [ ${#NAMES[@]} -eq 2 ] || echo "Once www.$DOMAIN points here too, run --ssl again to add it to the certificate."
   exit 0
 fi
 

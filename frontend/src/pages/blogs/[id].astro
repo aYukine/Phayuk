@@ -1,4 +1,5 @@
 ---
+import Img from '../../components/Img.astro';
 import Layout from '../../layouts/Layout.astro';
 import PageBanner from '../../components/PageBanner.astro';
 import { blogs, paragraphs, type Blog } from '../../lib/content';
@@ -27,7 +28,7 @@ const description = `${blog.title}: ${blog.context}. Travel log by Pholl Chanpha
       {images.map((img, i) => (
         <figure class="mb-4 break-inside-avoid sm:mb-6">
           <button type="button" data-lightbox={img.src} data-caption={img.caption || ''} class="group block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-soft shadow-soft">
-            <img src={img.src} alt={img.caption || `${blog.title}, photo ${i + 1}`} loading={i < 3 ? 'eager' : 'lazy'} decoding="async" class="zoom-img w-full" />
+            <Img src={img.src} alt={img.caption || `${blog.title}, photo ${i + 1}`} loading={i < 3 ? 'eager' : 'lazy'} class="zoom-img w-full" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" />
           </button>
           {img.caption && <figcaption class="mt-2 px-1 text-sm text-muted">{img.caption}</figcaption>}
         </figure>

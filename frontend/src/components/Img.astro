@@ -1,0 +1,24 @@
+---
+// <img> with width/height and a thumbnail srcset when one exists.
+// `sizes` tells the browser how wide the image is drawn, so phones pick the small file.
+import type { HTMLAttributes } from 'astro/types';
+import { imageInfo } from '../lib/images';
+
+type Props = Omit<HTMLAttributes<'img'>, 'src'> & { src?: string };
+const { src, sizes = '100vw', alt = '', loading = 'lazy', decoding = 'async', ...rest } = Astro.props;
+const info = imageInfo(src);
+---
+
+{info.src && (
+  <img
+    src={info.src}
+    srcset={info.srcset}
+    sizes={info.srcset ? sizes : undefined}
+    width={info.width}
+    height={info.height}
+    alt={alt}
+    loading={loading}
+    decoding={decoding}
+    {...rest}
+  />
+)}

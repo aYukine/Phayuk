@@ -8,25 +8,50 @@
   "footerBlurb": "Building functional, intelligent hardware solutions. Always optimizing, tracking new tech milestones, and creating out in the open.",
   "location": "Phnom Penh, KH",
   "email": "phayuk@phayuk.com",
-  "avatar": "/assets/me.png",
-  "banner": "/blogs/china/img/6.png",
+  "avatar": "/assets/me.webp",
+  "banner": "/blogs/china/img/6.webp",
   "resume": "/assets/resume.pdf",
-  "skills": ["Embedded Systems", "Edge AI", "Computer Vision", "IoT", "Robotics", "Full Stack"],
+  "skills": [
+    "Embedded Systems",
+    "Edge AI",
+    "Computer Vision",
+    "IoT",
+    "Robotics",
+    "Full Stack"
+  ],
   "stats": [
-    { "value": "4", "label": "Awards & Honors" },
-    { "value": "3", "label": "Shipped Projects" },
-    { "value": "5", "label": "Countries Competed" }
+    {
+      "value": "4",
+      "label": "Awards & Honors"
+    },
+    {
+      "value": "3",
+      "label": "Shipped Projects"
+    },
+    {
+      "value": "5",
+      "label": "Countries Competed"
+    }
   ],
   "socials": [
-    { "label": "GitHub", "url": "https://github.com/ayukine" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/pholl-chan-phayuk" },
-    { "label": "Instagram", "url": "https://www.instagram.com/ayyukkine" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/ayukine"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/pholl-chan-phayuk"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ayyukkine"
+    }
   ],
   "seo": {
     "siteUrl": "https://phayuk.com",
     "title": "Pholl Chanphayuk | Robotics & Software Engineer Portfolio",
     "description": "Explore the engineering portfolio of Pholl Chanphayuk, featuring edge AI, robotics and embedded systems projects (BlindSense, Pestibot), achievements, and travel logs.",
     "keywords": "Pholl Chanphayuk, Phayuk, robotics, embedded systems, edge AI, computer vision, engineering portfolio",
-    "ogImage": "/assets/me.png"
+    "ogImage": "/assets/me.webp"
   }
 }

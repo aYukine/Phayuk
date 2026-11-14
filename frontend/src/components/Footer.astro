@@ -1,4 +1,5 @@
 ---
+import Img from './Img.astro';
 import { site } from '../lib/content';
 const year = new Date().getFullYear();
 ---
@@ -17,7 +18,7 @@ const year = new Date().getFullYear();
 
       <div class="flex flex-col justify-between gap-8 md:col-span-5">
         <div class="flex items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/10">
-          {site.avatar && <img src={site.avatar} alt={site.name} width="72" height="72" loading="lazy" class="h-18 w-18 rounded-2xl object-cover" />}
+          {site.avatar && <Img src={site.avatar} alt={site.name} class="h-18 w-18 rounded-2xl object-cover" sizes="72px" />}
           <div>
             <p class="font-serif text-lg font-semibold">{site.name}</p>
             <p class="text-sm text-white/70">{site.role}</p>

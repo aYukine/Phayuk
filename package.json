@@ -10,7 +10,8 @@
     "start": "concurrently -k -n web,admin \"npm:dev -w frontend\" \"npm:start -w backend\"",
     "dev": "npm start",
     "build": "npm run build -w frontend",
-    "preview": "npm run preview -w frontend"
+    "preview": "npm run preview -w frontend",
+    "optimize-images": "node backend/optimize-images.js"
   },
   "devDependencies": {
     "concurrently": "^10.0.7"

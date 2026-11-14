@@ -3,7 +3,7 @@
 // so every change lives in the repo and ships with the static build.
 import express from 'express';
 import multer from 'multer';
-import sharp from 'sharp';
+import { writeWebp, isThumb } from './images.js';
 import { spawn } from 'node:child_process';
 import { mkdir, readFile, readdir, rename, writeFile, copyFile, stat } from 'node:fs/promises';
 import path from 'node:path';
@@ -106,10 +106,10 @@ app.post('/api/upload', upload.array('files', 50), async (req, res) => {
     const parsed = path.parse(file.originalname);
     const base = `${safeSegment(parsed.name).toLowerCase()}-${Date.now().toString(36)}`;
     let outName;
-    // Raster images are resized, auto-rotated, stripped of EXIF/GPS data and converted to WebP.
+    // Raster images become a resized WebP plus a .thumb.webp, with EXIF/GPS data stripped.
     if (/^image\/(png|jpe?g|webp|avif|heic|heif|tiff)$/i.test(file.mimetype)) {
       outName = `${base}.webp`;
-      await sharp(file.buffer).rotate().resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(dir, outName));
+      await writeWebp(file.buffer, path.join(dir, outName));
     } else {
       outName = `${base}${parsed.ext.toLowerCase()}`;
       await writeFile(path.join(dir, outName), file.buffer);
@@ -126,7 +126,7 @@ app.get('/api/media', async (_req, res) => {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) await walk(full);
-      else if (IMAGE_EXT.test(entry.name)) {
+      else if (IMAGE_EXT.test(entry.name) && !isThumb(entry.name)) {
         const { mtimeMs } = await stat(full);
         out.push({ url: '/' + path.relative(PUBLIC_DIR, full).split(path.sep).join('/'), mtime: mtimeMs });
       }

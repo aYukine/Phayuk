@@ -1,7 +1,7 @@
 ---
 import { isExternal, type Link } from '../lib/content';
-interface Props { links?: Link[]; dark?: boolean }
-const { links = [], dark = false } = Astro.props;
+interface Props { links?: Link[] }
+const { links = [] } = Astro.props;
 const buttons = links.filter((l) => l.url && (l.display ?? 'button') !== 'embed');
 ---
 
@@ -9,9 +9,8 @@ const buttons = links.filter((l) => l.url && (l.display ?? 'button') !== 'embed'
   <div class="flex flex-wrap gap-3">
     {buttons.map((l, i) => {
       const primary = (l.style ?? (i === 0 ? 'primary' : 'secondary')) === 'primary';
-      const cls = dark ? (primary ? 'btn-invert' : 'btn-ghost-dark') : primary ? 'btn-primary' : 'btn-secondary';
       return (
-        <a href={l.url} class={cls} {...(isExternal(l.url) ? { target: '_blank', rel: 'noopener' } : {})}>
+        <a href={l.url} class={primary ? 'btn-primary' : 'btn-secondary'} {...(isExternal(l.url) ? { target: '_blank', rel: 'noopener' } : {})}>
           {l.label || 'Open link'} <span aria-hidden="true">↗</span>
         </a>
       );

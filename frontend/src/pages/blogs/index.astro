@@ -4,18 +4,20 @@ import PageBanner from '../../components/PageBanner.astro';
 import { blogs } from '../../lib/content';
 ---
 
-<Layout title="Journal: Travel & Event Logs" description={`Travel logs and tech competition diaries: ${blogs.map((b) => b.title).join(', ')}.`} navDark>
+<Layout title="Journal: Travel & Event Logs" description={`Travel logs and tech competition diaries: ${blogs.map((b) => b.title).join(', ')}.`}>
   <PageBanner eyebrow="Journal" title="Travel & event logs" lead="A visual archive of competitions, field trips and the places in between." image={blogs[0]?.cover} />
-  <section class="container-x py-20 md:py-28">
-    <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="container-x py-14 md:py-24">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {blogs.map((b) => (
-        <a href={`/blogs/${b.id}/`} class="group block">
-          <div class="aspect-[4/5] overflow-hidden bg-neutral-100">
-            {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="bw-img h-full w-full object-cover" />}
+        <a href={`/blogs/${b.id}/`} class="card card-hover group block p-3">
+          <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-soft sm:aspect-[4/5]">
+            {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="zoom-img h-full w-full object-cover" />}
           </div>
-          <p class="eyebrow mt-5 text-neutral-500">{b.year || 'Log'} · {b.images?.length || 0} photos</p>
-          <h2 class="mt-2 text-xl font-bold tracking-tight">{b.title}</h2>
-          <p class="mt-1 text-sm text-neutral-600">{b.context}</p>
+          <div class="p-3 pt-4">
+            <p class="text-xs font-medium text-muted">{b.year || 'Log'} · {b.images?.length || 0} photos</p>
+            <h2 class="mt-1 text-xl font-semibold tracking-tight">{b.title}</h2>
+            <p class="mt-1 text-sm text-muted">{b.context}</p>
+          </div>
         </a>
       ))}
     </div>

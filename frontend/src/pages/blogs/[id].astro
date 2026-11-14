@@ -11,35 +11,35 @@ const images = blog.images || [];
 const description = `${blog.title}: ${blog.context}. Travel log by Pholl Chanphayuk.`;
 ---
 
-<Layout title={`${blog.title} — Journal`} description={description} image={blog.cover} type="article" navDark>
+<Layout title={`${blog.title} — Journal`} description={description} image={blog.cover} type="article">
   <PageBanner back={{ href: '/blogs/', label: 'Journal' }} eyebrow={[blog.year, `${images.length} photos`].filter(Boolean).join(' · ')} title={blog.title} lead={blog.context} image={blog.cover} />
 
   {blog.body && (
     <section class="container-x py-16">
-      <div class="max-w-3xl space-y-5 text-lg leading-relaxed text-neutral-800">
+      <div class="max-w-3xl space-y-5 font-serif text-xl leading-relaxed">
         {paragraphs(blog.body).map((p) => <p>{p}</p>)}
       </div>
     </section>
   )}
 
   <section class="container-x py-16 md:py-20">
-    <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+    <div class="columns-1 gap-4 sm:columns-2 sm:gap-6 lg:columns-3">
       {images.map((img, i) => (
-        <figure class="mb-6 break-inside-avoid">
-          <button type="button" data-lightbox={img.src} data-caption={img.caption || ''} class="group block w-full cursor-zoom-in overflow-hidden bg-neutral-100">
-            <img src={img.src} alt={img.caption || `${blog.title}, photo ${i + 1}`} loading={i < 3 ? 'eager' : 'lazy'} decoding="async" class="w-full transition-transform duration-700 group-hover:scale-[1.02]" />
+        <figure class="mb-4 break-inside-avoid sm:mb-6">
+          <button type="button" data-lightbox={img.src} data-caption={img.caption || ''} class="group block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-soft shadow-soft">
+            <img src={img.src} alt={img.caption || `${blog.title}, photo ${i + 1}`} loading={i < 3 ? 'eager' : 'lazy'} decoding="async" class="zoom-img w-full" />
           </button>
-          {img.caption && <figcaption class="mt-2 text-sm text-neutral-500">{img.caption}</figcaption>}
+          {img.caption && <figcaption class="mt-2 px-1 text-sm text-muted">{img.caption}</figcaption>}
         </figure>
       ))}
     </div>
   </section>
 
-  <dialog id="lightbox" class="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-black/95">
+  <dialog id="lightbox" class="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-ink/90 backdrop:backdrop-blur-sm">
     <form method="dialog" class="flex h-[100dvh] w-[100vw] flex-col items-center justify-center gap-4 p-4">
-      <img id="lightbox-img" src="" alt="" class="max-h-[85dvh] max-w-full object-contain" />
-      <p id="lightbox-cap" class="text-sm text-neutral-400"></p>
-      <button class="eyebrow absolute top-6 right-6 text-white" aria-label="Close">Close ✕</button>
+      <img id="lightbox-img" src="" alt="" class="max-h-[85dvh] max-w-full rounded-2xl object-contain" />
+      <p id="lightbox-cap" class="text-sm text-paper/80"></p>
+      <button class="absolute top-6 right-6 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink" aria-label="Close">Close ✕</button>
     </form>
   </dialog>
 </Layout>

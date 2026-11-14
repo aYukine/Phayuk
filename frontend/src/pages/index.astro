@@ -7,70 +7,85 @@ import { site, projects, awards, blogs, featured } from '../lib/content';
 const topProjects = featured(projects, 3);
 const topAwards = awards.slice(0, 4);
 const topBlogs = blogs.slice(0, 3);
+const statTints = ['bg-primary text-white', 'bg-white border border-line', 'bg-white border border-line'];
+const skillTints = ['bg-soft', 'bg-leaf', 'bg-sunny', 'bg-lime', 'bg-cloud'];
 ---
 
-<Layout navDark>
+<Layout>
   <!-- Banner -->
-  <section class="relative isolate flex min-h-[600px] h-[92svh] max-h-[960px] items-end overflow-hidden bg-black text-white">
-    {site.banner && (
-      <img src={site.banner} alt="" aria-hidden="true" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover" />
-    )}
-    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/30 to-black/40"></div>
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/10 to-transparent"></div>
-    <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:calc(100%/6)_100%]"></div>
+  <section class="relative overflow-hidden px-3 pt-4 sm:px-4">
+    <div class="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.5rem] bg-soft">
+      <div class="blob -top-32 -left-24 h-[28rem] w-[28rem] bg-highlight/70"></div>
+      <div class="blob -top-24 -right-16 h-80 w-80 bg-gold/40"></div>
+      <div class="blob -bottom-48 left-1/4 h-80 w-[40rem] bg-highlight/50"></div>
 
-    <div class="container-x pt-32 pb-16 md:pb-20">
-      <div class="grid items-end gap-12 lg:grid-cols-12">
-        <div class="lg:col-span-8">
-          {site.eyebrow && <p class="eyebrow reveal text-neutral-200">{site.eyebrow} — {site.location}</p>}
-          <h1 class="reveal mt-5 text-5xl leading-[0.95] font-black tracking-tighter sm:text-7xl lg:text-8xl">
-            {site.name}
+      <div class="container-x relative grid items-center gap-12 py-12 md:py-24 lg:grid-cols-12">
+        <div class="lg:col-span-6">
+          {site.eyebrow && (
+            <p class="reveal pill bg-paper"><span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgb(16_185_129/0.7)]"></span>{site.eyebrow}{site.location && ` · ${site.location}`}</p>
+          )}
+          <h1 class="reveal mt-6 text-5xl leading-[0.98] font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+            Hi, I'm <span class="mark">{site.name.split(' ')[0]}</span><br />{site.name.split(' ').slice(1).join(' ')}
           </h1>
-          <p class="reveal mt-6 text-xl font-medium text-neutral-300 md:text-2xl">{site.role}</p>
-          {site.headline && <p class="reveal mt-2 text-xl text-neutral-300 md:text-2xl">{site.headline}</p>}
-          <div class="reveal mt-10 flex flex-wrap gap-3">
-            <a href="/projects/" class="btn-invert">Explore projects <span aria-hidden="true">→</span></a>
-            <a href="/awards/" class="btn-ghost-dark">View achievements</a>
+          <p class="reveal mt-6 text-xl font-medium md:text-2xl">{site.role}</p>
+          {site.headline && <p class="reveal mt-2 text-lg text-muted md:text-xl">{site.headline}</p>}
+          <div class="reveal mt-9 flex flex-wrap gap-3">
+            <a href="/projects/" class="btn-primary">Explore projects <span aria-hidden="true">→</span></a>
+            <a href="/awards/" class="btn-secondary">View achievements</a>
           </div>
         </div>
-        {site.stats && site.stats.length > 0 && (
-          <dl class="reveal grid grid-cols-3 border border-white/15 bg-black/45 px-5 backdrop-blur-md lg:col-span-4 lg:grid-cols-1 lg:px-0">
-            {site.stats.map((s) => (
-              <div class="py-5 lg:border-b lg:border-white/10 lg:px-8 lg:py-6 lg:last:border-b-0">
-                <dt class="eyebrow text-neutral-300">{s.label}</dt>
-                <dd class="mt-1 text-4xl font-black tracking-tight md:text-5xl">{s.value}</dd>
+
+        <div class="relative lg:col-span-6">
+          {site.banner && (
+            <div class="reveal aspect-[4/3] overflow-hidden rounded-3xl border-4 border-paper shadow-lift sm:rotate-2 sm:rounded-[2rem] sm:border-8">
+              <img src={site.banner} alt={`${site.name} at a competition`} fetchpriority="high" class="h-full w-full object-cover" />
+            </div>
+          )}
+          {site.avatar && (
+            <div class="float absolute -top-6 -left-2 flex sm:-left-4 items-center gap-3 rounded-2xl bg-paper p-2.5 pr-5 shadow-lift md:-left-10">
+              <img src={site.avatar} alt="" width="56" height="56" class="h-14 w-14 rounded-xl object-cover" />
+              <div>
+                <p class="text-sm font-semibold">{site.name}</p>
+                <p class="text-xs text-muted">Open to collaborate ✨</p>
               </div>
-            ))}
-          </dl>
-        )}
+            </div>
+          )}
+          {site.stats && site.stats.length > 0 && (
+            <dl class="mt-10 grid grid-cols-3 gap-2 sm:mt-16 sm:gap-3">
+              {site.stats.map((s, i) => (
+                <div class:list={['rounded-2xl px-2 py-4 text-center sm:p-4', statTints[i % statTints.length]]}>
+                  <dd class="font-serif text-3xl font-semibold md:text-4xl">{s.value}</dd>
+                  <dt class="mt-1 text-xs font-medium opacity-75">{s.label}</dt>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Skills strip -->
+  <!-- Skills -->
   {site.skills && site.skills.length > 0 && (
-    <div class="overflow-hidden border-y border-black bg-white py-4">
-      <ul class="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm font-semibold tracking-tight md:justify-between">
-        {site.skills.map((s, i) => (
-          <li class="flex items-center gap-8">{i > 0 && <span class="hidden h-1 w-1 rounded-full bg-black md:inline-block" aria-hidden="true"></span>}{s}</li>
-        ))}
-      </ul>
-    </div>
+    <ul class="container-x mt-8 flex flex-wrap justify-center gap-2 sm:mt-10 sm:gap-2.5">
+      {site.skills.map((s, i) => <li class:list={['rounded-full px-3.5 py-1.5 text-sm font-medium sm:px-4 sm:py-2', skillTints[i % skillTints.length]]}>{s}</li>)}
+    </ul>
   )}
 
   <!-- About -->
-  <section class="container-x grid gap-12 py-24 md:grid-cols-12 md:py-32">
+  <section class="container-x grid items-center gap-10 py-16 md:grid-cols-12 md:gap-12 md:py-28">
     <div class="md:col-span-4">
-      <p class="eyebrow text-neutral-500"><span class="mr-3 text-black">00</span>About</p>
       {site.avatar && (
-        <div class="group mt-8 aspect-square max-w-xs overflow-hidden bg-neutral-100">
-          <img src={site.avatar} alt={`Portrait of ${site.name}`} width="640" height="640" loading="lazy" class="bw-img h-full w-full object-cover" />
+        <div class="relative mx-auto max-w-[16rem] md:max-w-xs">
+          <div class="absolute inset-0 -rotate-3 rounded-[2rem] bg-primary"></div>
+          <img src={site.avatar} alt={`Portrait of ${site.name}`} width="640" height="640" loading="lazy" class="relative aspect-square w-full rounded-[2rem] object-cover shadow-soft" />
         </div>
       )}
     </div>
     <div class="md:col-span-8">
-      <p class="text-2xl leading-snug font-medium tracking-tight md:text-4xl md:leading-tight">{site.bio}</p>
-      <div class="mt-10 flex flex-wrap gap-3">
+      <p class="pill">About me</p>
+      <p class="mt-5 font-serif text-[1.4rem] leading-snug sm:text-2xl md:text-[2.1rem] md:leading-tight">{site.bio}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
         {site.resume && <a href={site.resume} target="_blank" rel="noopener" class="btn-primary">Download résumé ↓</a>}
         {site.email && <a href={`mailto:${site.email}`} class="btn-secondary">Contact me</a>}
       </div>
@@ -78,9 +93,9 @@ const topBlogs = blogs.slice(0, 3);
   </section>
 
   <!-- Projects -->
-  <section class="container-x pb-24 md:pb-32">
-    <SectionHeader index="01" eyebrow="Selected work" title="Featured projects" href="/projects/" linkLabel="All projects" />
-    <div class="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2">
+  <section class="container-x pb-16 md:pb-28">
+    <SectionHeader eyebrow="Selected work" title="Featured projects" href="/projects/" linkLabel="All projects" />
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
       {topProjects.map((p, i) => (
         <div class:list={[i === 0 && 'md:col-span-2']}>
           <ProjectCard project={p} index={i} large={i === 0} />
@@ -90,42 +105,44 @@ const topBlogs = blogs.slice(0, 3);
   </section>
 
   <!-- Awards -->
-  <section class="bg-neutral-50 py-24 md:py-32">
-    <div class="container-x">
-      <SectionHeader index="02" eyebrow="Recognition" title="Awards & milestones" href="/awards/" linkLabel="All awards" />
-      <ol class="mt-4">
-        {topAwards.map((a) => (
-          <li class="border-b border-neutral-200">
-            <a href={`/awards/${a.id}/`} class="group grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-white md:px-4">
-              <span class="col-span-3 font-mono text-sm text-neutral-500 md:col-span-1">{a.year}</span>
-              <div class="col-span-9 md:col-span-7">
-                <h3 class="text-lg font-bold tracking-tight md:text-xl">{a.title}</h3>
-                <p class="mt-1 text-sm text-neutral-500">{a.organization}</p>
-              </div>
-              <span class="col-span-9 col-start-4 md:col-span-3 md:col-start-auto">
-                {a.placement && <span class="eyebrow inline-block border border-black px-2.5 py-1">{a.placement}</span>}
-              </span>
-              <span class="hidden text-right text-xl transition-transform group-hover:translate-x-1 md:col-span-1 md:block">→</span>
-            </a>
-          </li>
-        ))}
-      </ol>
+  <section class="px-4">
+    <div class="rounded-[1.75rem] sm:rounded-[2.5rem] bg-soft py-14 md:py-24">
+      <div class="container-x">
+        <SectionHeader eyebrow="Recognition" title="Awards & milestones" href="/awards/" linkLabel="All awards" />
+        <ol class="mt-10 grid gap-4">
+          {topAwards.map((a) => (
+            <li>
+              <a href={`/awards/${a.id}/`} class="card card-hover group flex items-center gap-5 p-4 md:p-5">
+                {a.image && <img src={a.image} alt="" loading="lazy" class="hidden h-16 w-24 shrink-0 rounded-xl object-cover sm:block" />}
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-medium text-muted">{a.year} · {a.organization}{a.placement && <span class="md:hidden"> · 🏆 {a.placement}</span>}</p>
+                  <h3 class="mt-1 text-lg font-semibold tracking-tight md:text-xl">{a.title}</h3>
+                </div>
+                {a.placement && <span class="hidden shrink-0 rounded-full bg-gold px-3.5 py-1.5 text-xs font-semibold md:inline-block">🏆 {a.placement}</span>}
+                <span class="shrink-0 text-xl text-muted transition-transform group-hover:translate-x-1">→</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- Journal -->
   {topBlogs.length > 0 && (
-    <section class="container-x py-24 md:py-32">
-      <SectionHeader index="03" eyebrow="Journal" title="Travel & event logs" href="/blogs/" linkLabel="All entries" />
-      <div class="mt-12 grid gap-8 md:grid-cols-3">
+    <section class="container-x py-16 md:py-28">
+      <SectionHeader eyebrow="Journal" title="Travel & event logs" href="/blogs/" linkLabel="All entries" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
         {topBlogs.map((b) => (
-          <a href={`/blogs/${b.id}/`} class="group block">
-            <div class="aspect-[4/5] overflow-hidden bg-neutral-100">
-              {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="bw-img h-full w-full object-cover" />}
+          <a href={`/blogs/${b.id}/`} class="card card-hover group block p-3">
+            <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-soft sm:aspect-[4/5]">
+              {b.cover && <img src={b.cover} alt={b.title} loading="lazy" decoding="async" class="zoom-img h-full w-full object-cover" />}
             </div>
-            <p class="eyebrow mt-5 text-neutral-500">{b.year || 'Log'}</p>
-            <h3 class="mt-2 text-xl font-bold tracking-tight">{b.title}</h3>
-            <p class="mt-1 text-sm text-neutral-600">{b.context}</p>
+            <div class="p-3 pt-4">
+              <p class="text-xs font-medium text-muted">{b.year || 'Log'} · {b.images?.length || 0} photos</p>
+              <h3 class="mt-1 text-xl font-semibold tracking-tight">{b.title}</h3>
+              <p class="mt-1 text-sm text-muted">{b.context}</p>
+            </div>
           </a>
         ))}
       </div>

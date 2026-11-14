@@ -6,10 +6,10 @@ const embeds = links.filter((l) => l.url && (l.display === 'embed' || l.display 
 ---
 
 {embeds.map((l) => (
-  <figure class="mt-10">
-    <div class="aspect-video w-full overflow-hidden border border-neutral-200 bg-neutral-100">
+  <figure class="card mt-10 p-3">
+    <div class="aspect-video w-full overflow-hidden rounded-2xl bg-soft">
       <iframe src={toEmbedUrl(l.url)} title={l.label || 'Embedded content'} loading="lazy" class="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
-    {l.label && <figcaption class="eyebrow mt-3 text-neutral-500">{l.label}</figcaption>}
+    {l.label && <figcaption class="px-2 pt-3 pb-1 text-sm text-muted">{l.label}</figcaption>}
   </figure>
 ))}

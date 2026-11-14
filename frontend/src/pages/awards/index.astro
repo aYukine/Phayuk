@@ -4,19 +4,21 @@ import PageBanner from '../../components/PageBanner.astro';
 import { awards } from '../../lib/content';
 ---
 
-<Layout title="Awards & Achievements" description={`Awards and competition results: ${awards.map((a) => a.title).join(', ')}.`} navDark>
+<Layout title="Awards & Achievements" description={`Awards and competition results: ${awards.map((a) => a.title).join(', ')}.`}>
   <PageBanner eyebrow={`${awards.length} honors`} title="Awards & achievements" lead="Regional and global recognition in AI, robotics and engineering competitions." image={awards[0]?.image} />
-  <section class="container-x py-20 md:py-28">
-    <div class="grid gap-x-8 gap-y-14 md:grid-cols-2">
+  <section class="container-x py-14 md:py-24">
+    <div class="grid gap-8 md:grid-cols-2">
       {awards.map((a) => (
-        <a href={`/awards/${a.id}/`} class="group block">
-          <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100">
-            {a.image && <img src={a.image} alt={a.title} loading="lazy" decoding="async" class="bw-img h-full w-full object-cover" />}
-            {a.placement && <span class="eyebrow absolute top-4 left-4 bg-black px-2.5 py-1 text-white">{a.placement}</span>}
+        <a href={`/awards/${a.id}/`} class="card card-hover group block p-3">
+          <div class="relative aspect-[16/10] overflow-hidden rounded-2xl bg-soft">
+            {a.image && <img src={a.image} alt={a.title} loading="lazy" decoding="async" class="zoom-img h-full w-full object-cover" />}
+            {a.placement && <span class="absolute top-4 left-4 rounded-full bg-gold px-3.5 py-1.5 text-xs font-semibold shadow-soft">🏆 {a.placement}</span>}
           </div>
-          <p class="mt-5 font-mono text-xs text-neutral-500">{a.year} · {a.organization}</p>
-          <h2 class="mt-2 text-2xl font-bold tracking-tight">{a.title}</h2>
-          <p class="mt-2 leading-relaxed text-neutral-600">{a.summary}</p>
+          <div class="p-4">
+            <p class="text-xs font-medium text-muted">{a.year} · {a.organization}</p>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight">{a.title}</h2>
+            <p class="mt-2 leading-relaxed text-muted">{a.summary}</p>
+          </div>
         </a>
       ))}
     </div>

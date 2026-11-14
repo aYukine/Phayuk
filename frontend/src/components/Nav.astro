@@ -1,72 +1,99 @@
 ---
 import { site } from '../lib/content';
-interface Props { dark?: boolean }
-const { dark = false } = Astro.props;
 const path = Astro.url.pathname;
 const links = [
   { href: '/projects/', label: 'Projects' },
   { href: '/awards/', label: 'Awards' },
   { href: '/blogs/', label: 'Journal' },
 ];
+const isActive = (href: string) => path.startsWith(href);
 ---
 
-<header
-  id="site-nav"
-  data-dark={dark ? 'true' : 'false'}
-  class="group/nav fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300
-    data-[dark=true]:border-white/10 data-[dark=true]:bg-transparent data-[dark=true]:text-white
-    data-[dark=false]:border-neutral-200 data-[dark=false]:bg-white/85 data-[dark=false]:text-black data-[dark=false]:backdrop-blur-md"
->
-  <nav class="container-x flex h-16 items-center justify-between" aria-label="Main">
-    <a href="/" class="flex items-baseline gap-1 text-lg font-black tracking-tight">
-      {site.brand}<span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+<header id="site-header" class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
+  <nav class="container-x flex h-16 items-center justify-between gap-6" aria-label="Main">
+    <a href="/" class="flex shrink-0 items-center gap-2.5 font-serif text-lg font-bold tracking-tight" aria-label={`${site.brand} home`}>
+      <img src="/favicon.ico" alt="" width="32" height="32" class="pixel h-8 w-8 rounded-md" />
+      <span>{site.brand}</span>
     </a>
 
-    <ul class="hidden items-center gap-8 text-sm font-medium md:flex">
+    <!-- Desktop -->
+    <div class="hidden items-center gap-8 md:flex">
+      <ul class="flex items-center gap-8 text-sm font-medium">
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                aria-current={isActive(l.href) ? 'page' : undefined}
+                class:list={[
+                  'relative py-5 transition-colors hover:text-ink',
+                  isActive(l.href) ? 'text-ink after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary-strong' : 'text-muted',
+                ]}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      {site.resume && <a href={site.resume} target="_blank" rel="noopener" class="btn-primary px-5 py-2.5">Résumé</a>}
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="nav-toggle"
+      type="button"
+      class="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-ink hover:bg-soft md:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      <svg class="icon-close hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-line bg-paper md:hidden">
+    <ul class="container-x flex flex-col py-3">
       {
         links.map((l) => (
           <li>
             <a
               href={l.href}
-              class:list={[
-                'relative py-1 opacity-70 transition-opacity hover:opacity-100',
-                path.startsWith(l.href) && 'opacity-100 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-current',
-              ]}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+              class:list={['flex items-center justify-between rounded-lg px-3 py-3.5 text-base font-medium', isActive(l.href) ? 'bg-soft text-ink' : 'text-ink/80 hover:bg-soft']}
             >
-              {l.label}
+              {l.label}<span class="text-muted" aria-hidden="true">→</span>
             </a>
           </li>
         ))
       }
-      {
-        site.resume && (
-          <li>
-            <a href={site.resume} target="_blank" rel="noopener" class="rounded-full border border-current px-4 py-1.5 text-xs font-semibold">
-              Résumé
-            </a>
-          </li>
-        )
-      }
+      {site.resume && (
+        <li class="px-3 pt-3 pb-2">
+          <a href={site.resume} target="_blank" rel="noopener" class="btn-primary w-full">Download résumé</a>
+        </li>
+      )}
     </ul>
-
-    <details class="relative md:hidden">
-      <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center" aria-label="Open menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h14M3 14h14" /></svg>
-      </summary>
-      <div class="absolute top-12 right-0 w-56 border border-neutral-200 bg-white p-2 text-black shadow-xl">
-        {links.map((l) => <a href={l.href} class="block px-4 py-3 text-sm font-medium hover:bg-neutral-100">{l.label}</a>)}
-        {site.resume && <a href={site.resume} target="_blank" rel="noopener" class="block px-4 py-3 text-sm font-medium hover:bg-neutral-100">Résumé ↗</a>}
-      </div>
-    </details>
-  </nav>
+  </div>
 </header>
 
 <script>
-  // Transparent nav over dark banners; solid white after scrolling.
-  const nav = document.getElementById('site-nav');
-  if (nav && nav.dataset.dark === 'true') {
-    const update = () => (nav.dataset.dark = window.scrollY > 40 ? 'false' : 'true');
-    update();
-    window.addEventListener('scroll', update, { passive: true });
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      toggle.querySelector('.icon-open')?.classList.toggle('hidden', open);
+      toggle.querySelector('.icon-close')?.classList.toggle('hidden', !open);
+    };
+    toggle.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('site-header')?.contains(e.target as Node)) setOpen(false);
+    });
+    window.matchMedia('(min-width: 768px)').addEventListener('change', () => setOpen(false));
   }
 </script>

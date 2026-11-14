@@ -28,12 +28,22 @@ Project entries support:
 
 ## Deploy
 
+One-time setup on a VPS that already runs nginx:
+
 ```bash
-./start.sh build      # → frontend/dist
-rsync -a --delete frontend/dist/ server:/var/www/phayuk/
+cp deploy/deploy.env.example deploy/deploy.env   # set DEPLOY_HOST, DEPLOY_USER, DOMAIN
+deploy/deploy.sh --setup      # installs the nginx site for DOMAIN only, uploads the site
+deploy/deploy.sh --ssl        # Let's Encrypt certificate + HTTPS redirect (needs certbot on the server)
 ```
 
-Then use `deploy/nginx.conf`. The admin is never deployed: it binds to 127.0.0.1 only and has no authentication.
+After that, every update is:
+
+```bash
+./start.sh deploy             # build, upload a new release, reload nginx
+deploy/deploy.sh --rollback   # if something looks wrong
+```
+
+Releases live in `/var/www/<site>/releases/`, and `current` points at the live one. The last five are kept. Other sites on the same nginx are not touched. If `nginx -t` fails, the new site is disabled again. Add `--dry-run` to see the server commands without running them.
 
 ## Config
 

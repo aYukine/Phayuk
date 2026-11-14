@@ -5,3 +5,4 @@ frontend/.astro/
 *.log
 .env
 content/.backup/
+deploy/deploy.env

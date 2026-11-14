@@ -26,24 +26,26 @@ Project entries support:
 - **Photos**: cover image plus a build log of photo + text stages (bulk upload supported).
 - **Links**: each link can show as a button, an embedded frame (YouTube, Vimeo, Drive and Figma links are converted automatically) or both. Each build-log stage can also have its own button or embed.
 
-## Deploy
+## Deploy (on the VPS)
 
-One-time setup on a VPS that already runs nginx:
-
-```bash
-cp deploy/deploy.env.example deploy/deploy.env   # set DEPLOY_HOST, DEPLOY_USER, DOMAIN
-deploy/deploy.sh --setup      # installs the nginx site for DOMAIN only, uploads the site
-deploy/deploy.sh --ssl        # Let's Encrypt certificate + HTTPS redirect (needs certbot on the server)
-```
-
-After that, every update is:
+Needs nginx, git and Node.js 22.23+ on the server. Other nginx sites are not touched.
 
 ```bash
-./start.sh deploy             # build, upload a new release, reload nginx
-deploy/deploy.sh --rollback   # if something looks wrong
+# Install Node (skip if `node -v` already shows 22.23+)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs
+
+git clone git@github.com:aYukine/Phayuk.git ~/phayuk && cd ~/phayuk
+./deploy/install.sh          # build, publish to /var/www/phayuk, add the nginx site
+./deploy/install.sh --ssl    # HTTPS (needs: sudo apt install -y certbot python3-certbot-nginx)
 ```
 
-Releases live in `/var/www/<site>/releases/`, and `current` points at the live one. The last five are kept. Other sites on the same nginx are not touched. If `nginx -t` fails, the new site is disabled again. Add `--dry-run` to see the server commands without running them.
+Update after pushing changes:
+
+```bash
+cd ~/phayuk && git pull && ./deploy/install.sh
+```
+
+Each run publishes a new release under `/var/www/phayuk/releases/` and points `current` at it. The last five are kept. To roll back, point `current` at an older release and reload nginx.
 
 ## Config
 
